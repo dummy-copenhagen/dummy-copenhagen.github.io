@@ -1,11 +1,53 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title></title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Single Image — Responsive</title>
+  <style>
+    /*
+      Single-image landing page
+      --------------------------------------------------
+      - Shows only one image, centered.
+      - Scales responsively on phones, tablets, and desktops.
+      - Black background; no scrollbars unless the image is taller than the viewport.
+      
+      HOW TO USE:
+      - Replace the src below (images/hero.jpg) with your own image path or URL.
+      - By default the entire image is visible (object-fit: contain). If you prefer edge-to-edge fill
+        (cropping may occur), change object-fit to 'cover' in the .hero rule.
+    */
+
+    /* Base / reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; background: #000; color-scheme: dark; }
+
+    /* Center the image in the viewport */
+    body {
+      min-height: 100vh;      /* Fallback for older browsers */
+      min-height: 100dvh;     /* Correct on mobile with dynamic toolbars */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Responsive image sizing */
+    .hero {
+      display: block;
+      max-width: 100vw;   /* Never overflow horizontally */
+      max-height: 100dvh; /* Never overflow vertically on modern mobiles */
+      width: auto;
+      height: auto;
+      object-fit: contain; /* Show the entire image without cropping */
+      /* object-fit: cover;  // Uncomment to fill the screen even if it crops */
+    }
+
+    /* Optional: remove default focus ring if image is focused via keyboard */
+    .hero:focus { outline: none; }
+  </style>
 </head>
 <body>
-<h1>TEST</h1>
+  <!-- Replace with your image file or remote URL -->
+  <img class="hero" src="images/hero.jpg" alt="Site hero image" />
 </body>
 </html>
