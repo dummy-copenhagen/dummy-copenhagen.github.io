@@ -1,60 +1,284 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Single Image — Responsive</title>
-  <style>
-    /*
-      Single-image landing page
-      --------------------------------------------------
-      - Shows only one image, centered.
-      - Scales responsively on phones, tablets, and desktops.
-      - Black background; no scrollbars unless the image is taller than the viewport.
-      
-      HOW TO USE:
-      - Replace the src below (images/hero.jpg) with your own image path or URL.
-      - By default the entire image is visible (object-fit: contain). If you prefer edge-to-edge fill
-        (cropping may occur), change object-fit to 'cover' in the .hero rule.
-    */
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>dummy - SUPERGAMES</title>
 
-    /* Base / reset */
-    *, *::before, *::after { box-sizing: border-box; }
-    html, body { height: 100%; margin: 0; background: #000; color-scheme: dark; }
+    <style>
+      /* Local fonts */
+      @font-face {
+        font-family: 'Untitled Sans';
+        src: url('./untitled-sans-regular.woff2') format('woff2');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Untitled Sans';
+        src: url('./untitled-sans-bold.woff2') format('woff2');
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+      }
 
-    /* Center the image in the viewport */
-    body {
-      min-height: 100vh;      /* Fallback for older browsers */
-      min-height: 100dvh;     /* Correct on mobile with dynamic toolbars */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+      :root{
+        --bg:#ebebeb;
+        --fg:#1c1c1c;
+        --gap:clamp(16px,2.4vw,28px);
+        --caption-pad:clamp(10px,1.4vw,18px);
+        --desc-size:11pt;
+        --image-gap:12px;
 
-body {
-     background-image: url('image.jpg');
-     background-repeat: no-repeat;
-     background-size: 100% 100%;
-     min-height: 100vh;
-}
 
-    /* Responsive image sizing */
-    .hero {
-      display: block;
-      max-width: 100vw;   /* Never overflow horizontally */
-      max-height: 100dvh; /* Never overflow vertically on modern mobiles */
-      width: auto;
-      height: auto;
-      object-fit: contain; /* Show the entire image without cropping */
-      /* object-fit: cover;  // Uncomment to fill the screen even if it crops */
-    }
+      }
 
-    /* Optional: remove default focus ring if image is focused via keyboard */
-    .hero:focus { outline: none; }
-  </style>
-</head>
-<body>
-  <!-- <img class="hero" src="hero3.png" alt="Site hero image" /> Replace with your image file or remote URL -->
-  <img src="image.jpg" alt="Site hero image" /> 
-</body>
+      *{box-sizing:border-box}
+      html,body{height:100%}
+      body{
+        margin:0;
+        background:var(--bg);
+        color:var(--fg);
+        font-family:'Untitled Sans', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      }
+
+      header.site{
+        position:sticky; top:0; z-index:10;
+        padding:10px var(--gap);
+        display:flex; align-items:center; justify-content:space-between;
+        background:linear-gradient(to bottom, rgba(235,235,235,1), rgba(235,235,235,0));
+        border-bottom:1px solid var(--rule);
+      }
+      header.site .brand{font-weight:700; letter-spacing:.01em}
+      header.site .hint{font-size:12px; opacity:.75}
+
+      .exhibition-text{
+        max-width: 800px;
+        margin: 36px auto 60px;
+        padding: 0 var(--gap);
+        font-size: 13pt;
+        line-height: 1.6;
+        white-space: pre-line;
+      }
+
+      main{
+        display:flex;
+        flex-direction:column;
+        gap:var(--image-gap);
+        padding: var(--image-gap) 0 60px;
+      }
+
+      section.photo{ width:100%; text-align:center; }
+      section.photo img{
+        width:100%;
+        height:auto;
+        max-width:980px;
+        display:block;
+        margin:0 auto;
+      }
+
+      section.cover{ margin-top:16px; }
+
+      figcaption{
+        background:var(--bg);
+        margin:6px auto 0;
+        padding:var(--caption-pad);
+        font-size:var(--desc-size);
+        color:var(--fg);
+        text-align:left;
+        box-shadow:var(--shadow);
+        border:1px solid var(--rule);
+        max-width:980px;
+      }
+      figcaption div{ margin:0 }
+    </style>
+  </head>
+  <body>
+    <header class="site" aria-label="Project header">
+      <div class="brand">dummy - SUPERGAMES</div>
+      <div class="hint">Tagensvej 126 - 30.08.2025</div>
+    </header>
+
+    <!-- Cover image -->
+    <section class="photo cover">
+      <figure>
+        <img src="./images/cover.jpg" alt="Cover image" loading="lazy" decoding="async">
+      </figure>
+    </section>
+
+    <!-- Exhibition text -->
+    <section class="exhibition-text">
+dummy's first edition of one day only burner shows SUPERGAMES, which took place at a former gas station and its premises, at Tagensvej 126. 
+
+SUPERGAMES is inspired by the idea of public space as a fleeting time, relational and unfinished, a space shaped not only by rules, social hierarchies, and industrial infrastructures, but also open to play, intervention, appropriation, and embodied presence. Borrowing from Henri Lefebvre’s notion of “the right to the city”, a right to celebrate, challenge, and reimagine the urban, SUPERGAMES explores the ephemeral, the fleeting, and the ritualistic in the encounter between body, material, and place.
+
+30th of August kl. 17-24
+
+Participating Artists:
+Flora Aussant, Zahna Siham Benamor, Leïth Benkhedda, Erdal Bilici, Niels Christensen, Magnus Frederik Clausen & Anskar Beau, Lukas Danys, Simon Dybbroe Møller, Leo Elia, Frederik Exner, Julie Falk, Mishael Fapohunda, Toke Flyvholm, Fryd Frydendahl, Cyprien Gaillard, Kaspars Groševs, Rune Kielsgaard, Siri Hammarén, Maja Li Härdelin, Mark Leckey, Alva Le Febvre, Lars Mathisen, Dagmar Moldovanu, Mykhailyna Moskalenko, Aske Olsen, Mischa Pavlovski, Vio Rossi, Jan S. Hansen, Sara Sachs, Benjamin Savi, Tora Schultz, Nadia Kardar Tehran, Markus von Platen, Victor Vejle, Sofie Winthe
+    </section>
+
+    <main>
+
+ <script>
+        const imageBasePath = './images/';
+
+        const files = [
+          '01_dummy_SUPERGAMES_low_01.jpg','02_dummy_SUPERGAMES_low_02.jpg','02_dummy_SUPERGAMES_low_03.jpg','02_dummy_SUPERGAMES_low_04.jpg',
+          '03_dummy_SUPERGAMES_low_05.jpg','03_dummy_SUPERGAMES_low_06.jpg','03_dummy_SUPERGAMES_low_07.jpg',
+          '04a_dummy_SUPERGAMES_low_08.jpg','04a_dummy_SUPERGAMES_low_09.jpg','04b_dummy_SUPERGAMES_low_10.jpg','04_dummy_SUPERGAMES_low_11.jpg',
+          '05_dummy_SUPERGAMES_low_12.jpg',
+          '06_dummy_SUPERGAMES_low_13.jpg','06_dummy_SUPERGAMES_low_14.jpg',
+          '07_dummy_SUPERGAMES_low_15.jpg','07_dummy_SUPERGAMES_low_16.jpg',
+          '08_dummy_SUPERGAMES_low_17.jpg','08_dummy_SUPERGAMES_low_18.jpg','08_dummy_SUPERGAMES_low_19.jpg',
+          '09_dummy_SUPERGAMES_low_20.jpg','09_dummy_SUPERGAMES_low_21.jpg','09_dummy_SUPERGAMES_low_22.jpg',
+          '10_dummy_SUPERGAMES_low_23.jpg','10_dummy_SUPERGAMES_low_24.jpg','10_dummy_SUPERGAMES_low_25.jpg',
+          '11_dummy_SUPERGAMES_low_26.jpg','11_dummy_SUPERGAMES_low_27.jpg',
+          '12_dummy_SUPERGAMES_low_28.jpg','12_dummy_SUPERGAMES_low_29.jpg',
+          '13_dummy_SUPERGAMES_low_30.jpg','13_dummy_SUPERGAMES_low_31.jpg','13_dummy_SUPERGAMES_low_32.jpg',
+          '14_dummy_SUPERGAMES_low_33.jpg','14_dummy_SUPERGAMES_low_34.jpg',
+          '15_dummy_SUPERGAMES_low_35.jpg','15_dummy_SUPERGAMES_low_36.jpg',
+          '16_dummy_SUPERGAMES_low_37.jpg','16_dummy_SUPERGAMES_low_38.jpg',
+          '17_dummy_SUPERGAMES_low_39.jpg','17_dummy_SUPERGAMES_low_40.jpg',
+          '18_dummy_SUPERGAMES_low_41.jpg','18_dummy_SUPERGAMES_low_42.jpg','18_dummy_SUPERGAMES_low_43.jpg','18_dummy_SUPERGAMES_low_44.jpg',
+          '19_dummy_SUPERGAMES_low_45.jpg','19_dummy_SUPERGAMES_low_46.jpg',
+          '20_dummy_SUPERGAMES_low_47.jpg','20_dummy_SUPERGAMES_low_48.jpg',
+          '21_dummy_SUPERGAMES_low_49.jpg','21_dummy_SUPERGAMES_low_50.jpg',
+          '22_dummy_SUPERGAMES_low_51.jpg','22_dummy_SUPERGAMES_low_52.jpg',
+          '23_dummy_SUPERGAMES_low_53.jpg','23_dummy_SUPERGAMES_low_54.jpg',
+          '24_dummy_SUPERGAMES_low_55.jpg',
+          '25_dummy_SUPERGAMES_low_56.jpg','25_dummy_SUPERGAMES_low_57.jpg',
+          '26_dummy_SUPERGAMES_low_58.jpg',
+          '27_dummy_SUPERGAMES_low_59.jpg','27_dummy_SUPERGAMES_low_60.jpg',
+          '28_dummy_SUPERGAMES_low_61.jpg','28_dummy_SUPERGAMES_low_62.jpg','28a_dummy_SUPERGAMES_low_63.jpg','28b_dummy_SUPERGAMES_low_64.jpg',
+          '29_dummy_SUPERGAMES_low_65.jpg','29_dummy_SUPERGAMES_low_66.jpg','29_dummy_SUPERGAMES_low_67.jpg',
+          '30_dummy_SUPERGAMES_low_68.jpg','30_dummy_SUPERGAMES_low_69.jpg',
+          '31_dummy_SUPERGAMES_low_70.jpg','31_dummy_SUPERGAMES_low_71.jpg','31_dummy_SUPERGAMES_low_72.jpg',
+          '32_dummy_SUPERGAMES_low_73.jpg','32_dummy_SUPERGAMES_low_74.jpg',
+          '33_dummy_SUPERGAMES_low_75.jpg','33_dummy_SUPERGAMES_low_76.jpg',
+          '34_dummy_SUPERGAMES_low_77.jpg','34_dummy_SUPERGAMES_low_78.jpg',
+          '35_dummy_SUPERGAMES_low_79.jpg','35_dummy_SUPERGAMES_low_80.jpg',
+          '36_dummy_SUPERGAMES_low_81.jpg','36_dummy_SUPERGAMES_low_82.jpg',
+          '37_dummy_SUPERGAMES_low_83.jpg','37_dummy_SUPERGAMES_low_84.jpg',
+          '38_dummy_SUPERGAMES_low_85.jpg','38_dummy_SUPERGAMES_low_86.jpg',
+          '39_dummy_SUPERGAMES_low_87.jpg','39_dummy_SUPERGAMES_low_88.jpg',
+          '40_dummy_SUPERGAMES_low_89.jpg','40_dummy_SUPERGAMES_low_90.jpg','40_dummy_SUPERGAMES_low_91.jpg','40_dummy_SUPERGAMES_low_92.jpg',
+          '41_dummy_SUPERGAMES_low_93.jpg','41_dummy_SUPERGAMES_low_94.jpg',
+          '42_dummy_SUPERGAMES_low_95.jpg',
+          '43_dummy_SUPERGAMES_low_96.jpg',
+          '44_dummy_SUPERGAMES_low_97.jpg',
+          '45_dummy_SUPERGAMES_low_98.jpg',
+          '46_dummy_SUPERGAMES_low_99.jpg','46_dummy_SUPERGAMES_low_100.jpg',
+          '47_dummy_SUPERGAMES_low_101.jpg','47_dummy_SUPERGAMES_low_102.jpg','47_dummy_SUPERGAMES_low_103.jpg','47_dummy_SUPERGAMES_low_104.jpg'
+        ];
+
+        // Custom captions mapped by the leading number in the filename (without leading zeros)
+        const customCaptions = {
+          '32': 'Flora Aussant, TalkThru I & II, 2025',
+          '47': 'Zahna Siham Benamor, The Night in Relief – Boxing Poet, 2025',
+          '39': 'Leïth Benkhedda, SC, 2025',
+          '29': 'Erdal Bilici, FAM, 2025',
+          '34': 'Niels Christensen, Exosoul, 2023',
+          '28': 'Magnus Frederik Clausen & Anskar Beau, Untitled painting (Two Trees for Albert York) - Untitled painting (Flowers), 2025',
+          '28a': 'Magnus Frederik Clausen & Anskar Beau, Untitled painting (Two Trees for Albert York), 2025',
+          '28b': 'Magnus Frederik Clausen & Anskar Beau, Untitled painting (Flowers), 2025',
+          '45': 'Lukas Danys, Fly, Fly Agaric, 2025',
+          '42': 'Lukas Danys, o, 2024',
+          '44': 'Lukas Danys, o, 2024',
+          '19': 'Simon Dybbroe Møller, BIC, 2019',
+          '10': 'Leo Elia, The Scarecrows of Saskan Playbill #1, 2025',
+          '33': 'Frederik Exner, Hovedstøber, 2024',
+          '15': 'Julie Falk, Free, 2025',
+          '3':  'Mishael Fapohunda, Every Day Is for the Thief, 2025',
+          '18': 'Toke Flyvholm, Unrigger, 2025',
+          '2':  'Fryd Frydendahl, Untitled (Reticle), 2025',
+          '5':  'Fryd Frydendahl, Untitled (Reticle), 2025',
+          '38': 'Cyprien Gaillard, MTA Send Back, 2019',
+          '14': 'Kaspars Groševs, I Syng of a Mayden, 2025',
+          '23': 'Rune Kielsgaard, 20_14 for Dummy Online 30.08.25, 2025',
+          '8':  'Siri Hammarén, Court, 2025',
+          '48': 'Maja Li Härdelin, Performance: Birdsongs, 2025',
+          '31': 'Mark Leckey, To the Old World (Thank You for the Use of Your Body), 2021 - 2022',
+ '4a':  'Alva Le Febvre, Untitled (Cherry), 2025',
+ '4a':  'Alva Le Febvre, Untitled (Cherry), 2025',	
+ '4b':  'Alva Le Febvre, Untitled (Dices), 2025',
+          '4':  'Alva Le Febvre, Untitled (Cherry) - Untitled (Dices), 2025',
+          '24': 'Lars Mathisen, AND AND AND, 2025',
+          '36': 'Lars Mathisen, Smokin’ Hub Cap, 2025',
+          '43': 'Lars Mathisen, The Bells, 2025',
+          '37': 'Dagmar Moldovanu, Untitled, 2025',
+          '41': 'Dagmar Moldovanu, 95, 2025',
+          '13': 'Mykhailyna Moskalenko, Untitled (Paris–New York) & Untitled (My Mourning Dress), 2025',
+          '35': 'Aske Olsen, Switch, 2025',
+          '16': 'Mischa Pavlovski, Ode to Dirt, 2025',
+          '17': 'Mischa Pavlovski, Ode to Dirt, 2025',
+          '22': 'Vio Rossi, Buildings That Sing, 2025',
+          '21': 'Jan S. Hansen, Untitled, 2025',
+          '20': 'Sara Sachs, Mount, 2025',
+          '25': 'Benjamin Savi, Cinéma Vérité, 2024',
+          '11': 'Benjamin Savi, Trip Hop #2, 2024',
+          '12': 'Benjamin Savi, Trip Hop #3, 2024',
+          '7': 'Tora Schultz, Poster, 2023',
+          '30': 'Nadia Kardar Tehran, Paykan Riders, 2023',
+          '9':  'Markus von Platen, Untitled, 2015',
+          '40': 'Victor Vejle, Summer Evening, 2025,',
+          '6':  'Sofie Winther, MILF, 2025',
+          '1':  'dummy - SUPERGAMES, Exhibition view',
+          '26': 'dummy - SUPERGAMES, Exhibition view',
+          '46': 'dummy - SUPERGAMES, Exhibition view'
+        };
+
+   
+
+        // Helper: italicize the title segment after the first comma (until the next comma, or end of string)
+        function italicizeTitle(line){
+          if (!line) return line;
+          // Try “, title,” pattern
+          let replaced = line.replace(/,\\s*([^,]+)\\s*,/, (_, title) => `, <em>${title}</em>,`);
+          if (replaced !== line) return replaced;
+          // Fallback: “, title” till end
+          return line.replace(/,\\s*([^,]+)\\s*$/, (_, title) => `, <em>${title}</em>`);
+        }
+
+        const main = document.currentScript.parentElement;
+
+        files.forEach(file => {
+          const section = document.createElement('section'); section.className = 'photo';
+          const figure = document.createElement('figure');
+
+          const img = document.createElement('img');
+          img.src = imageBasePath + file;
+          img.loading = 'lazy';
+          img.decoding = 'async';
+          img.alt = file;
+
+          const numberKey = (file.split('_')[0].replace(/^0+/, '') || '0'); // '01' -> '1'
+          const raw = customCaptions[numberKey] || defaultLine;
+          const htmlCaption = italicizeTitle(raw);
+
+          const fc = document.createElement('figcaption');
+          const caption = document.createElement('div');
+          caption.innerHTML = htmlCaption;
+
+          fc.appendChild(caption);
+          figure.appendChild(img);
+          figure.appendChild(fc);
+          section.appendChild(figure);
+          main.appendChild(section);
+        });
+      </script>
+
+
+
+
+    </main>
+  </body>
 </html>
+
+
+
+
+
+
+
+     
